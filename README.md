@@ -11,7 +11,7 @@
     https://www.mongodb.com/cloud/atlas/lp/general/try?utm_source=compass&utm_medium=product
 
 ### Para saber como configurar o MongoDB na sua máquina é só acessar esse link no qual ele explica passa a passo:
-    https://www.youtube.com/watch?v=skK5xj-CK-Q&t=480s
+    [https://www.youtube.com/watch?v=skK5xj-CK-Q&t=480s](https://www.youtube.com/watch?v=skK5xj-CK-Q&t=480s)
 
 ### `npm install ou yarn (recomendo usar o npm nesse projeto especifico)`
 

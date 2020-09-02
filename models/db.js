@@ -1,4 +1,4 @@
-// AUTOR: SÉRGIO DEIRÓ E VANDEILSON FIGUEIREDO
+// AUTOR: SÉRGIO DEIRÓ
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:27017/EmployeeDB', { useNewUrlParser: true }, (err) => {

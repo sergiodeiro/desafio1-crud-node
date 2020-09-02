@@ -1,5 +1,5 @@
 
-{{!-- // AUTOR: SÉRGIO DEIRÓ E VANDEILSON FIGUEIREDO --}}
+{{!-- // AUTOR: SÉRGIO DEIRÓ --}}
 <div class="d-flex justify-content-between pb-3">
     <h3>Lista de Contatos</h3>
     <a class="btn btn-primary" href="/employee"><i class="fa fa-plus"></i> Adicionar Contato </a>
@@ -15,7 +15,11 @@
             <th>Email</th>
             <th>Celular</th>
             <th>Cidade</th>
-            <th></th>
+            <th>Estado</th>
+            <th>CPF</th>
+            <th>RG</th>
+            <th>Data de Nascimento</th>
+            <th>Acões</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +29,10 @@
             <td>{{this.email}}</td>
             <td>{{this.mobile}}</td>
             <td>{{this.city}}</td>
+            <td>{{this.states}}</td>
+            <td>{{this.cpf}}</td>
+            <td>{{this.rg}}</td>
+            <td>{{this.dateNasc}}</td>
             <td>
                 <a href="/employee/{{this._id}}"><i class="fa fa-pencil fa-lg text-warning" aria-hidden="true"></i></a>
                 <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-trash fa-lg text-danger" aria-hidden="true"></i></a>

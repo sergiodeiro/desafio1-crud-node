@@ -22,9 +22,13 @@ No diretório do projeto, você pode executar:
 ### `nodemon server.js`
 
 Executa o node no modo de desenvolvimento.<br>
-Abrir [http://localhost:3000](http://localhost:3000) para vê-lo no navegador.
+Abrir [http://localhost:3000/employee/list](http://localhost:3000/employee/list) para vê-lo no navegador.
+
+Observação :
+
+### EmployeeDb.employee - Sérgio Deiró
 
 Equipe: 
 
-Sérgio Deiró e Vandeilson Figueiredo
+Sérgio Deiró e Mauricio Lanner
 

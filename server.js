@@ -1,3 +1,4 @@
+// AUTOR: SÉRGIO DEIRÓ
 require('./models/db');
 
 const express = require('express');
@@ -19,5 +20,13 @@ app.set('view engine', 'hbs');
 app.listen(3000, () => {
     console.log('Express server started at port : 3000');
 });
+
+app.use((req, res, next) => {
+    if (req.url == '/') {
+     res.redirect('/employee/list');
+     return;
+    }
+     next();
+})
 
 app.use('/employee', employeeController);

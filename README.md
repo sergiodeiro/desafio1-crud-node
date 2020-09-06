@@ -1,4 +1,4 @@
-## Desafio 1 - Crud com Node + Express + Nodemon + Mongo + body-parser + Bootstrap
+## Desafio 1 - Crud com Node + Express + Nodemon + MongoDB + body-parser + Bootstrap
 
 ## Desafio da Unifacs
 

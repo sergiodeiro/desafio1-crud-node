@@ -1,4 +1,4 @@
-## Desafio 1 - Crud com Node + Express + Nodemon + Mongo + body-parser
+## Desafio 1 - Crud com Node + Express + Nodemon + MongoDB + body-parser + Bootstrap
 
 ## Desafio da Unifacs
 
@@ -22,7 +22,11 @@ No diretório do projeto, você pode executar:
 ### `nodemon server.js`
 
 Executa o node no modo de desenvolvimento.<br>
-Abrir [http://localhost:3000/employee/list](http://localhost:3000/employee/list) para vê-lo no navegador.
+Abrir [http://localhost:3000](http://localhost:3000) para vê-lo no navegador.
+
+### Visualização do CRUD (EmployeeDb - Lista de Contatos)
+
+![dowloand](https://user-images.githubusercontent.com/32772022/91929969-ff056200-ecb5-11ea-82f7-ae5fb6508c30.jpg)
 
 Observação :
 

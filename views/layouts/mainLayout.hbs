@@ -1,4 +1,4 @@
-{{!-- // AUTOR: SÉRGIO DEIRÓ --}}
+{{!-- // AUTOR: SÉRGIO DEIRÓ E MAURICIO LANNER--}}
 <!DOCTYPE html>
 
 <html>
@@ -12,12 +12,56 @@
     <script src="https://unpkg.com/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <style>
+        html body {
+            background-color: #302442;
+        }
+
+        .bg-nav {
+            background-color: rgb(36, 0, 94);
+        }
+
+        .prymary {
+            background-color: #8F2BE5;
+        }
+
+        .btn-primary {
+            background-color: #8F2BE5;
+            color: #fff;
+            border-color: #8F2BE5;
+        }
+
+        .btn-primary:hover {
+            background-color: #470185;
+            color: #fff;
+            border-color: #ffffff;
+        }
+
+        .card-dark {
+            background-color: #D2BEE0;
+            margin-top: 25px;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        .text-danger {
+            color: #bb0000 !important;
+        }
+
+        .text-warning {
+            color: #ffffff !important;
+        }
+        .form-control{
+            background-color: #e5dcea;
+        }
+    </style>
 </head>
 
-<body style="background: #121214">
+<body>
     <div class="row" style="margin-right: 0px;margin-left: 0px;">
         <div class="col-md-12 p-0 pb-5">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-nav">
                 <a class="navbar-brand" href="/">Menu</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,11 +83,25 @@
                                 {{/each}}
                             </div>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/employee" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Endereços
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/address/list">Lista</a>
+                                {{#each list}}
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/address">Adicionar Endereço</a>
+                                <div class="dropdown-divider"></div>
+                                {{/each}}
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </div>
-        <div class="col-md-10" style="background-color: #fff;margin-top: 25px;padding:20px; margin: auto">
+        <div class="col-md-10 card-dark">
             {{{body}}}
         </div>
     </div>
@@ -57,7 +115,8 @@
         $('input[name="mobile"]').mask('(99) 99999-9999');
         $('input[name="cpf"]').mask('999.999.999-99');
         $('input[name="rg"]').mask('99.999.99-999');
-         $('input[name="dateNasc"]').mask('99/99/9999');
+        $('input[name="dateNasc"]').mask('99/99/9999');
+        $('input[name="cep"]').mask('99999-999');
     </script>
 </body>
 

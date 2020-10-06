@@ -7,6 +7,7 @@ const exphbs = require('express-handlebars');
 const bodyparser = require('body-parser');
 
 const employeeController = require('./controllers/employeeController');
+const addressController = require('./controllers/addressController');
 
 var app = express();
 app.use(bodyparser.urlencoded({
@@ -30,3 +31,4 @@ app.use((req, res, next) => {
 })
 
 app.use('/employee', employeeController);
+app.use('/address', addressController);

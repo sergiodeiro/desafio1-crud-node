@@ -1,0 +1,63 @@
+
+{{!-- // AUTOR: Mauricio Lanner --}}
+<div class="d-flex justify-content-between pb-3">
+    <h3>Lista de Contatos</h3>
+    <a class="btn btn-primary" href="/address"><i class="fa fa-plus"></i> Adicionar endereço </a>
+</div>
+<div class="alert alert-success myAlert-top" style="display:none;" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Sucesso</strong>,  O endreços foi excluido !
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tipo
+            <th>Logradouro</th>
+            <th>Complemento</th>
+            <th>Numero</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>CEP</th>
+            <th>Acões</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.type}}</td>
+            <td>{{this.address}}</td>
+            <td>{{this.complement}}</td>
+            <td>{{this.number}}</td>
+            <td>{{this.district}}</td>
+            <td>{{this.city}}</td>
+            <td>{{this.state}}</td>
+            <td>{{this.cep}}</td>
+            <td>
+                <a href="/address/{{this._id}}"><i class="fa fa-pencil fa-lg text-warning" aria-hidden="true"></i></a>
+                <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-trash fa-lg text-danger" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Excluir endereço</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Tem certeza de que deseja excluir este endereço?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                <a onclick="myAlertTop()" href="/address/delete/{{this._id}}" class="btn btn-danger">Sim</a>
+            </div>
+            </div>
+        </div>
+        </div>
+        {{/each}}
+    </tbody>
+</table>

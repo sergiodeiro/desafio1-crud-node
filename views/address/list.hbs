@@ -1,63 +1,304 @@
+{{!--
+// AUTOR: Mauricio Lanner e Sergio Deiró
+--}}
 
-{{!-- // AUTOR: Mauricio Lanner --}}
-<div class="d-flex justify-content-between pb-3">
-    <h3>Lista de Contatos</h3>
-    <a class="btn btn-primary" href="/address"><i class="fa fa-plus"></i> Adicionar endereço </a>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading c-list">
+                <span class="title">Endereços</span>
+                <ul class="pull-right c-controls">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#create" title="Adcionar contato">
+                            <i class="fa fa-plus"> </i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="hide-search" data-command="toggle-search" data-toggle="tooltip"
+                            data-placement="top" title="Buscar">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row" style="display: none;">
+                <div class="col-md-12">
+                    <div class="input-group c-search">
+                        <input type="text" class="form-control" id="contact-list-search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><span
+                                    class="fa fa-search text-muted"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group" id="contact-list">
+                {{#each list}}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-2 avatar d-flex flex-column justify-content-center align-items-center">
+                            <img src="https://exame.com/wp-content/uploads/2017/07/google-maps.png?w=680" width="128px"
+                                height="128px" alt="Endereço" class="img-responsive" />
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                            <span class="visible-xs">
+                                <span class="text-muted"><strong>{{this.type}}
+                                        {{this.address}} - Nº {{this.number}}</strong></span><br />
+                            </span>
+                            <span class="visible-xs"> <span class="text-muted">{{this.complement}}</span><br /></span>
+                            <span class="visible-xs"> <span class="text-muted">Bairro:
+                                    {{this.district}}</span><br /></span>
+                            <span class="visible-xs"> <span class="text-muted">{{this.city}} -
+                                    {{this.state}}</span><br /></span>
+                        </div>
+                        <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
+                            <a data-toggle="modal" class="btn btn-primary" data-target="#delet{{this._id}}" href="#">
+                                <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                            </a>
+                            <br>
+                            <a data-toggle="modal" class="btn btn-primary" data-target="#edit{{this._id}}" href="#">
+                                <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+                <!-- Modal Delet-->
+                <div class="modal fade" id="delet{{this._id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Excluir Contato</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Tem certeza de que deseja excluir este endereço?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                                <a onclick="myAlertTop()" href="/address/delete/{{this._id}}"
+                                    class="btn btn-danger">Sim</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal edit-->
+                <div class="modal fade" id="edit{{this._id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Edereço</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="editForm{{this._id}}" action="/address" method="POST" autocomplete="off">
+                                    <input type="hidden" name="_id" value="{{this._id}}">
+                                    <div class="form-group">
+                                        <label>Tipo (Rua, Avenida, Praça ...)</label>
+                                        <select class="form-control" value="{{this.type}}">
+                                            <option value="Rua">Rua</option>
+                                            <option value="Avenida">Avenida</option>
+                                            <option value="Travessa">Travessa</option>
+                                            <option value="Viela">Viela</option>
+                                            <option value="Praça">Praça</option>
+                                            <option value="Parque">Parque</option>
+                                            <option value="Estrada">Estrada</option>
+                                        </select>
+                                        <div class="text-danger">
+                                            {{this.typeError}}</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Logradouro</label>
+                                        <input type="text" class="form-control" name="address" placeholder="Logradouro"
+                                            value="{{this.address}}">
+                                        <div class="text-danger">
+                                            {{this.addressError}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Complemento</label>
+                                        <input type="text" class="form-control" name="complement"
+                                            placeholder="Complemento" value="{{this.complement}}">
+                                        <div class="text-danger">
+                                            {{this.complementError}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Numero</label>
+                                        <input type="text" class="form-control" name="number" placeholder="Numero"
+                                            value="{{this.number}}">
+                                        <div class="text-danger">
+                                            {{this.numberError}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CEP</label>
+                                        <input type="text" class="form-control" name="cep" placeholder="00000-000"
+                                            value="{{this.cep}}">
+                                        <div class="text-danger">
+                                            {{this.cepError}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Bairro</label>
+                                        <input type="text" class="form-control" name="district" placeholder="Bairro"
+                                            value="{{this.district}}">
+                                        <div class="text-danger">
+                                            {{this.districtError}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cidade</label>
+                                        <input type="text" class="form-control" name="city" placeholder="Cidade"
+                                            value="{{this.city}}">
+                                        <div class="text-danger">
+                                            {{this.cityError}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Estado</label>
+                                        <select class="form-control" name="state" value="{{this.state}}">
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
+                                        </select>
+                                        <div class="text-danger">
+                                            {{this.stateError}}
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não editar</button>
+                                <button type="submit" form="editForm{{this._id}}" class="btn btn-success"><i
+                                        class="fa fa-database"></i>
+                                    Salvar edição</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+            </ul>
+        </div>
+    </div>
 </div>
-<div class="alert alert-success myAlert-top" style="display:none;" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Sucesso</strong>,  O endreços foi excluido !
-</div>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Tipo
-            <th>Logradouro</th>
-            <th>Complemento</th>
-            <th>Numero</th>
-            <th>Bairro</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>CEP</th>
-            <th>Acões</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each list}}
-        <tr>
-            <td>{{this.type}}</td>
-            <td>{{this.address}}</td>
-            <td>{{this.complement}}</td>
-            <td>{{this.number}}</td>
-            <td>{{this.district}}</td>
-            <td>{{this.city}}</td>
-            <td>{{this.state}}</td>
-            <td>{{this.cep}}</td>
-            <td>
-                <a href="/address/{{this._id}}"><i class="fa fa-pencil fa-lg text-warning" aria-hidden="true"></i></a>
-                <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-trash fa-lg text-danger" aria-hidden="true"></i></a>
-            </td>
-        </tr>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+<!-- modal create -->
+<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Excluir endereço</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> Criar Contato</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Tem certeza de que deseja excluir este endereço?
+                <form id="newAddress" action="/address" method="POST" autocomplete="off">
+                    <input type="hidden" name="_id" value="{{address._id}}">
+                    <div class="form-group">
+                        <label>Tipo (Rua, Avenida, Praça ...)</label>
+                        <input type="text" class="form-control" name="type" placeholder="Tipo" value="{{address.type}}">
+                        <div class="text-danger">
+                            {{address.typeError}}</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Logradouro</label>
+                        <input type="text" class="form-control" name="address" placeholder="Logradouro"
+                            value="{{address.address}}">
+                        <div class="text-danger">
+                            {{address.addressError}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Complemento</label>
+                        <input type="text" class="form-control" name="complement" placeholder="Complemento"
+                            value="{{address.complement}}">
+                        <div class="text-danger">
+                            {{address.complementError}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Numero</label>
+                        <input type="text" class="form-control" name="number" placeholder="Numero"
+                            value="{{address.number}}">
+                        <div class="text-danger">
+                            {{address.numberError}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>CEP</label>
+                        <input type="text" class="form-control" name="cep" placeholder="00000-000"
+                            value="{{address.cep}}">
+                        <div class="text-danger">
+                            {{address.cepError}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Bairro</label>
+                        <input type="text" class="form-control" name="district" placeholder="Bairro"
+                            value="{{address.district}}">
+                        <div class="text-danger">
+                            {{address.districtError}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cidade</label>
+                        <input type="text" class="form-control" name="city" placeholder="Cidade"
+                            value="{{address.city}}">
+                        <div class="text-danger">
+                            {{address.cityError}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <input type="text" class="form-control" name="state" placeholder="Estado"
+                            value="{{address.state}}">
+                        <div class="text-danger">
+                            {{address.stateError}}
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                <a onclick="myAlertTop()" href="/address/delete/{{this._id}}" class="btn btn-danger">Sim</a>
-            </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Desistir</button>
+                <button type="submit" form="newAddress" class="btn btn-success"><i class="fa fa-database"></i>
+                    Criar</button>
             </div>
         </div>
-        </div>
-        {{/each}}
-    </tbody>
-</table>
+    </div>
+</div>

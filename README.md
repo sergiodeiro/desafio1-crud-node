@@ -31,8 +31,10 @@ Abrir [http://localhost:3000](http://localhost:3000) para vê-lo no navegador.
 Observação :
 
 ### EmployeeDb.employee - Sérgio Deiró
+### EmployeeDb.address - Mauricio Lanner
 
 Equipe: 
 
-Sérgio Deiró e Mauricio Lanner
+Sérgio Deiró  - 205182052
+Mauricio Lanner - 205182016
 

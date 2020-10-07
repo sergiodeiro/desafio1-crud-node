@@ -103,7 +103,7 @@
                                     <input type="hidden" name="_id" value="{{this._id}}">
                                     <div class="form-group">
                                         <label>Tipo (Rua, Avenida, Praça ...)</label>
-                                        <select class="form-control" value="{{this.type}}">
+                                        <select class="form-control" name="type" value="{{this.type}}" required>
                                             <option value="Rua">Rua</option>
                                             <option value="Avenida">Avenida</option>
                                             <option value="Travessa">Travessa</option>
@@ -118,7 +118,7 @@
                                     <div class="form-group">
                                         <label>Logradouro</label>
                                         <input type="text" class="form-control" name="address" placeholder="Logradouro"
-                                            value="{{this.address}}">
+                                            value="{{this.address}}" required>
                                         <div class="text-danger">
                                             {{this.addressError}}
                                         </div>
@@ -134,7 +134,7 @@
                                     <div class="form-group">
                                         <label>Numero</label>
                                         <input type="text" class="form-control" name="number" placeholder="Numero"
-                                            value="{{this.number}}">
+                                            value="{{this.number}}" required>
                                         <div class="text-danger">
                                             {{this.numberError}}
                                         </div>
@@ -142,7 +142,7 @@
                                     <div class="form-group">
                                         <label>CEP</label>
                                         <input type="text" class="form-control" name="cep" placeholder="00000-000"
-                                            value="{{this.cep}}">
+                                            value="{{this.cep}}" required>
                                         <div class="text-danger">
                                             {{this.cepError}}
                                         </div>
@@ -150,7 +150,7 @@
                                     <div class="form-group">
                                         <label>Bairro</label>
                                         <input type="text" class="form-control" name="district" placeholder="Bairro"
-                                            value="{{this.district}}">
+                                            value="{{this.district}}" required>
                                         <div class="text-danger">
                                             {{this.districtError}}
                                         </div>
@@ -158,7 +158,7 @@
                                     <div class="form-group">
                                         <label>Cidade</label>
                                         <input type="text" class="form-control" name="city" placeholder="Cidade"
-                                            value="{{this.city}}">
+                                            value="{{this.city}}" required>
                                         <div class="text-danger">
                                             {{this.cityError}}
                                         </div>
@@ -166,7 +166,7 @@
 
                                     <div class="form-group">
                                         <label>Estado</label>
-                                        <select class="form-control" name="state" value="{{this.state}}">
+                                        <select class="form-control" name="state" value="{{this.state}}" required>
                                             <option value="AC">Acre</option>
                                             <option value="AL">Alagoas</option>
                                             <option value="AP">Amapá</option>
@@ -231,14 +231,22 @@
                     <input type="hidden" name="_id" value="{{address._id}}">
                     <div class="form-group">
                         <label>Tipo (Rua, Avenida, Praça ...)</label>
-                        <input type="text" class="form-control" name="type" placeholder="Tipo" value="{{address.type}}">
+                        <select class="form-control" name="type" value="{{this.type}}" required>
+                            <option value="Rua">Rua</option>
+                            <option value="Avenida">Avenida</option>
+                            <option value="Travessa">Travessa</option>
+                            <option value="Viela">Viela</option>
+                            <option value="Praça">Praça</option>
+                            <option value="Parque">Parque</option>
+                            <option value="Estrada">Estrada</option>
+                        </select>
                         <div class="text-danger">
                             {{address.typeError}}</div>
                     </div>
                     <div class="form-group">
                         <label>Logradouro</label>
                         <input type="text" class="form-control" name="address" placeholder="Logradouro"
-                            value="{{address.address}}">
+                            value="{{address.address}}" required>
                         <div class="text-danger">
                             {{address.addressError}}
                         </div>
@@ -254,7 +262,7 @@
                     <div class="form-group">
                         <label>Numero</label>
                         <input type="text" class="form-control" name="number" placeholder="Numero"
-                            value="{{address.number}}">
+                            value="{{address.number}}" required>
                         <div class="text-danger">
                             {{address.numberError}}
                         </div>
@@ -262,7 +270,7 @@
                     <div class="form-group">
                         <label>CEP</label>
                         <input type="text" class="form-control" name="cep" placeholder="00000-000"
-                            value="{{address.cep}}">
+                            value="{{address.cep}}" required>
                         <div class="text-danger">
                             {{address.cepError}}
                         </div>
@@ -270,7 +278,7 @@
                     <div class="form-group">
                         <label>Bairro</label>
                         <input type="text" class="form-control" name="district" placeholder="Bairro"
-                            value="{{address.district}}">
+                            value="{{address.district}}" required>
                         <div class="text-danger">
                             {{address.districtError}}
                         </div>
@@ -278,7 +286,7 @@
                     <div class="form-group">
                         <label>Cidade</label>
                         <input type="text" class="form-control" name="city" placeholder="Cidade"
-                            value="{{address.city}}">
+                            value="{{address.city}}" required>
                         <div class="text-danger">
                             {{address.cityError}}
                         </div>
@@ -286,8 +294,35 @@
 
                     <div class="form-group">
                         <label>Estado</label>
-                        <input type="text" class="form-control" name="state" placeholder="Estado"
-                            value="{{address.state}}">
+                        <select class="form-control" name="state" value="{{this.state}}" required>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
                         <div class="text-danger">
                             {{address.stateError}}
                         </div>
